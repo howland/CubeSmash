@@ -34,11 +34,12 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        self.backgroundColor = [SKColor colorWithRed:0 green:0 blue:0 alpha:1.0];
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         
-        _player = [[SKSpriteNode alloc] initWithImageNamed:@"PlayerImage"];
-        _player.size = CGSizeMake(self.size.width/10, self.size.width/10);
+       // _player = [[SKSpriteNode alloc] initWithImageNamed:@"PlayerImage"];
+        _player = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(self.size.width/20, self.size.width/20)];
+       // _player.size = CGSizeMake(self.size.width/20, self.size.width/20);
         _player.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_player.size];
         _player.name = @"Player";
         [self addChild:_player];
@@ -150,10 +151,11 @@
 
 
 -(void)blowUp:(SKSpriteNode*)node{
-    SKAction *fadeOut = [SKAction fadeOutWithDuration:0.14];
+    SKAction *expand = [SKAction resizeByWidth:2*node.size.width height:2*node.size.height duration:0.3];
+    SKAction *fadeOut = [SKAction fadeOutWithDuration:0.3];
     SKAction *remove = [SKAction removeFromParent];
     if([node parent] != NULL)
-        [node runAction:[SKAction sequence:@[fadeOut,remove]]];
+        [node runAction:[SKAction sequence:@[expand,fadeOut,remove]]];
 }
 
 

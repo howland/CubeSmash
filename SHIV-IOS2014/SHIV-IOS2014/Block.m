@@ -26,8 +26,9 @@
     self = [super init];
     
     
-    _blockSprite = [[SKSpriteNode alloc] initWithImageNamed:@"Block"];
-    _blockSprite.size = CGSizeMake(_a, _b);
+    //_blockSprite = [[SKSpriteNode alloc] initWithImageNamed:@"Block"];
+   // _blockSprite.size = CGSizeMake(_a, _b);
+    _blockSprite = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(_a, _b)];
     _blockSprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_blockSprite.size];
     
     return self;

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		03B737191915C7DF0038B447 /* Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B737181915C7DF0038B447 /* Block.m */; };
+		03B7371B1915DC4D0038B447 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 03B7371A1915DC4D0038B447 /* Explosion.sks */; };
+		03B7371D1915DC930038B447 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B7371C1915DC930038B447 /* a.png */; };
 		03F809151915BD5F005D3905 /* SpriteSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F809141915BD5F005D3905 /* SpriteSuper.m */; };
 		F7038CC119132E130023ECDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7038CC019132E130023ECDE /* Foundation.framework */; };
 		F7038CC319132E130023ECDE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7038CC219132E130023ECDE /* CoreGraphics.framework */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		03B737171915C7DF0038B447 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 		03B737181915C7DF0038B447 /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Block.m; sourceTree = "<group>"; };
+		03B7371A1915DC4D0038B447 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = SOURCE_ROOT; };
+		03B7371C1915DC930038B447 /* a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = a.png; path = ../../../../Desktop/a.png; sourceTree = "<group>"; };
 		03F809131915BD5F005D3905 /* SpriteSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpriteSuper.h; path = ../SpriteSuper.h; sourceTree = "<group>"; };
 		03F809141915BD5F005D3905 /* SpriteSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteSuper.m; path = ../SpriteSuper.m; sourceTree = "<group>"; };
 		F7038CBD19132E130023ECDE /* SHIV-IOS2014.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SHIV-IOS2014.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,8 +142,10 @@
 		F7038CC819132E130023ECDE /* SHIV-IOS2014 */ = {
 			isa = PBXGroup;
 			children = (
+				03B7371C1915DC930038B447 /* a.png */,
 				03F809161915BD6A005D3905 /* Util */,
 				03F809141915BD5F005D3905 /* SpriteSuper.m */,
+				03B7371A1915DC4D0038B447 /* Explosion.sks */,
 				03F809131915BD5F005D3905 /* SpriteSuper.h */,
 				F7038CD419132E130023ECDE /* Main_iPhone.storyboard */,
 				F7038CD719132E130023ECDE /* Main_iPad.storyboard */,
@@ -261,6 +267,8 @@
 			files = (
 				F7038CE319132E130023ECDE /* Images.xcassets in Resources */,
 				F7038CD919132E130023ECDE /* Main_iPad.storyboard in Resources */,
+				03B7371D1915DC930038B447 /* a.png in Resources */,
+				03B7371B1915DC4D0038B447 /* Explosion.sks in Resources */,
 				F7038CD619132E130023ECDE /* Main_iPhone.storyboard in Resources */,
 				F7038CCD19132E130023ECDE /* InfoPlist.strings in Resources */,
 			);
