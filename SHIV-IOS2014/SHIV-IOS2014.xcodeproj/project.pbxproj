@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03B737191915C7DF0038B447 /* Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B737181915C7DF0038B447 /* Block.m */; };
+		03F809151915BD5F005D3905 /* SpriteSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F809141915BD5F005D3905 /* SpriteSuper.m */; };
 		F7038CC119132E130023ECDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7038CC019132E130023ECDE /* Foundation.framework */; };
 		F7038CC319132E130023ECDE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7038CC219132E130023ECDE /* CoreGraphics.framework */; };
 		F7038CC519132E130023ECDE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7038CC419132E130023ECDE /* UIKit.framework */; };
@@ -18,7 +20,6 @@
 		F7038CD919132E130023ECDE /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7038CD719132E130023ECDE /* Main_iPad.storyboard */; };
 		F7038CDC19132E130023ECDE /* SKPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7038CDB19132E130023ECDE /* SKPViewController.m */; };
 		F7038CDF19132E130023ECDE /* SKPMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F7038CDE19132E130023ECDE /* SKPMyScene.m */; };
-		F7038CE119132E130023ECDE /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = F7038CE019132E130023ECDE /* Spaceship.png */; };
 		F7038CE319132E130023ECDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7038CE219132E130023ECDE /* Images.xcassets */; };
 		F7038CEA19132E130023ECDE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7038CE919132E130023ECDE /* XCTest.framework */; };
 		F7038CEB19132E130023ECDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7038CC019132E130023ECDE /* Foundation.framework */; };
@@ -38,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03B737171915C7DF0038B447 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		03B737181915C7DF0038B447 /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Block.m; sourceTree = "<group>"; };
+		03F809131915BD5F005D3905 /* SpriteSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpriteSuper.h; path = ../SpriteSuper.h; sourceTree = "<group>"; };
+		03F809141915BD5F005D3905 /* SpriteSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteSuper.m; path = ../SpriteSuper.m; sourceTree = "<group>"; };
 		F7038CBD19132E130023ECDE /* SHIV-IOS2014.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SHIV-IOS2014.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7038CC019132E130023ECDE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F7038CC219132E130023ECDE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,7 +60,6 @@
 		F7038CDB19132E130023ECDE /* SKPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKPViewController.m; sourceTree = "<group>"; };
 		F7038CDD19132E130023ECDE /* SKPMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKPMyScene.h; sourceTree = "<group>"; };
 		F7038CDE19132E130023ECDE /* SKPMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKPMyScene.m; sourceTree = "<group>"; };
-		F7038CE019132E130023ECDE /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		F7038CE219132E130023ECDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F7038CE819132E130023ECDE /* SHIV-IOS2014Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SHIV-IOS2014Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7038CE919132E130023ECDE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -89,6 +93,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03F809161915BD6A005D3905 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				F7038CDA19132E130023ECDE /* SKPViewController.h */,
+				F7038CDB19132E130023ECDE /* SKPViewController.m */,
+				F7038CD119132E130023ECDE /* SKPAppDelegate.h */,
+				F7038CD219132E130023ECDE /* SKPAppDelegate.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		F7038CB419132E130023ECDE = {
 			isa = PBXGroup;
 			children = (
@@ -123,15 +138,15 @@
 		F7038CC819132E130023ECDE /* SHIV-IOS2014 */ = {
 			isa = PBXGroup;
 			children = (
-				F7038CD119132E130023ECDE /* SKPAppDelegate.h */,
-				F7038CD219132E130023ECDE /* SKPAppDelegate.m */,
+				03F809161915BD6A005D3905 /* Util */,
+				03F809141915BD5F005D3905 /* SpriteSuper.m */,
+				03F809131915BD5F005D3905 /* SpriteSuper.h */,
 				F7038CD419132E130023ECDE /* Main_iPhone.storyboard */,
 				F7038CD719132E130023ECDE /* Main_iPad.storyboard */,
-				F7038CDA19132E130023ECDE /* SKPViewController.h */,
-				F7038CDB19132E130023ECDE /* SKPViewController.m */,
 				F7038CDD19132E130023ECDE /* SKPMyScene.h */,
 				F7038CDE19132E130023ECDE /* SKPMyScene.m */,
-				F7038CE019132E130023ECDE /* Spaceship.png */,
+				03B737171915C7DF0038B447 /* Block.h */,
+				03B737181915C7DF0038B447 /* Block.m */,
 				F7038CE219132E130023ECDE /* Images.xcassets */,
 				F7038CC919132E130023ECDE /* Supporting Files */,
 			);
@@ -244,7 +259,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7038CE119132E130023ECDE /* Spaceship.png in Resources */,
 				F7038CE319132E130023ECDE /* Images.xcassets in Resources */,
 				F7038CD919132E130023ECDE /* Main_iPad.storyboard in Resources */,
 				F7038CD619132E130023ECDE /* Main_iPhone.storyboard in Resources */,
@@ -269,6 +283,8 @@
 			files = (
 				F7038CCF19132E130023ECDE /* main.m in Sources */,
 				F7038CDF19132E130023ECDE /* SKPMyScene.m in Sources */,
+				03F809151915BD5F005D3905 /* SpriteSuper.m in Sources */,
+				03B737191915C7DF0038B447 /* Block.m in Sources */,
 				F7038CDC19132E130023ECDE /* SKPViewController.m in Sources */,
 				F7038CD319132E130023ECDE /* SKPAppDelegate.m in Sources */,
 			);
@@ -487,6 +503,7 @@
 				F7038CFB19132E130023ECDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F7038CFC19132E130023ECDE /* Build configuration list for PBXNativeTarget "SHIV-IOS2014Tests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +512,7 @@
 				F7038CFE19132E130023ECDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
