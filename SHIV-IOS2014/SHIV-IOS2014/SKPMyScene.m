@@ -56,6 +56,8 @@
         [self addChild:_scoreLabel];
         _scoreLabel.zPosition = 100;
         
+        _trees = [[NSMutableArray alloc] init];
+        
         [self reset];
         
         SKShapeNode *side1 = [SKShapeNode node];
@@ -199,6 +201,7 @@
         SKSpriteNode *nTemp = tempBlock.blockSprite;
         [self blowUp:nTemp];
     }
+    
     [self reset];
 }
 
@@ -207,20 +210,37 @@
     if(_playing){
         _time++;
         _score = _time; //NEED A HUERISTIC FOR SCORE
-        _scoreLabel.text = [NSString stringWithFormat:@"%i",(int)_score];
-
-        if(((int)arc4random()%2)==0){
-            
+        if(_time%10==0)
+            _scoreLabel.text = [NSString stringWithFormat:@"%i",(int)_score];
+        
+        //if(((int)arc4random()%5)==0){
+        if((_time%5==0) && (arc4random()%4==0)){
+            Tree *treeTemp = [[Tree alloc] initWithPosition:_treeSpawn andScreenSize:self.size];
+            [_trees addObject:treeTemp];
+            [self addChild:treeTemp.treeSprite];
+        }
+        
+        for(int i=0;i<_trees.count;i++){
+            Tree *tempTree = _trees[i];
+            [tempTree update];
+            if((tempTree.treeSprite.position.y<-100) || (tempTree.treeSprite.position.x<-100) || (tempTree.treeSprite.position.x>self.size.width*1.1)){
+                [tempTree.treeSprite removeFromParent];
+                [_trees removeObject:tempTree];
+            }
+        }
+        //if(((int)arc4random()%8)==0){
+        if((_time%((20-(_time/5000.0))==0) && (arc4random()%8==0))){
             Block *blockTemp = [[Block alloc] initWithPosition:_treeSpawn andScreenSize:self.size];
             [_blocks addObject:blockTemp];
             [self addChild:blockTemp.blockSprite];
         }
+
         for(int i=0;i<_blocks.count;i++){
-            
             Block *tempBlock = _blocks[i];
-            if([_player intersectsNode:tempBlock.blockSprite]){
-                [self gameOver];
-            }
+            if(tempBlock.blockSprite.position.y<self.size.height/3)
+                if([_player intersectsNode:tempBlock.blockSprite]){
+                    [self gameOver];
+                }
             [tempBlock update];
             if(tempBlock.blockSprite.position.y<-100){
                 [tempBlock.blockSprite removeFromParent];

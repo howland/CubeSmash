@@ -17,7 +17,6 @@
 @property double x;
 @property double y;
 @property double dy;
-@property int time;
 @property double over;
 @property int a;
 @property int b;
