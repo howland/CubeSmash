@@ -140,8 +140,8 @@
     
     _playing = NO;
     _score = 0;
+    _time = 0;
     _player.position = CGPointMake(self.size.width/2, ((int)self.size.height*.1));
-
     
     _blocks = [[NSMutableArray alloc] init];
     
