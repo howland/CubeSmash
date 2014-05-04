@@ -47,14 +47,12 @@
         _tapToStart = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         _tapToStart.text = @"Tap To Start!";
         _tapToStart.fontSize = self.size.width/10;
-        _tapToStart.position = CGPointMake(CGRectGetMidX(self.frame),
-                                           CGRectGetMidY(self.frame));
+        _tapToStart.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         
         _scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         _scoreLabel.text = [NSString stringWithFormat:@"%i",(int)_score];
         _scoreLabel.fontSize = self.size.width/10;
-        _scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                           CGRectGetMidY(self.frame));
+
         [self addChild:_scoreLabel];
         _scoreLabel.zPosition = 100;
         
@@ -63,7 +61,7 @@
         SKShapeNode *side1 = [SKShapeNode node];
         CGMutablePathRef pathToDraw1 = CGPathCreateMutable();
         CGPathMoveToPoint(pathToDraw1, NULL,  _treeSpawn.x  ,_treeSpawn.y);
-        CGPathAddLineToPoint(pathToDraw1, NULL, 0, 0);
+        CGPathAddLineToPoint(pathToDraw1, NULL, 0 - self.size.width*.13, 0);
         side1.path = pathToDraw1;
         [side1 setStrokeColor:[UIColor greenColor]];
         [self addChild:side1];
@@ -71,11 +69,10 @@
         SKShapeNode *side2 = [SKShapeNode node];
         CGMutablePathRef pathToDraw2 = CGPathCreateMutable();
         CGPathMoveToPoint(pathToDraw2, NULL, _treeSpawn.x  ,_treeSpawn.y);
-        CGPathAddLineToPoint(pathToDraw2, NULL, self.size.width, 0);
+        CGPathAddLineToPoint(pathToDraw2, NULL, self.size.width + self.size.width*.13, 0);
         side2.path = pathToDraw2;
         [side2 setStrokeColor:[UIColor greenColor]];
         [self addChild:side2];
-        
         
         
         /*
@@ -126,24 +123,32 @@
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        _player.position = CGPointMake(_player.position.x + location.x -_lastTouchX, _player.position.y);
+        int dp = location.x -_lastTouchX;
+        double tol = 0.1;
+        if(dp<0){
+            if(_player.position.x>self.size.width*tol){
+                _player.position = CGPointMake(_player.position.x + dp, _player.position.y);
+
+            }
+        }else{
+            if(_player.position.x<self.size.width*(1-tol)){
+                _player.position = CGPointMake(_player.position.x + dp, _player.position.y);
+                
+            }
+        }
         _lastTouchX = location.x;
 
     }
 }
 
 -(void)reset{
-    
-
-    
     [self addChild:_tapToStart];
-    
     
     _playing = NO;
     _score = 0;
     _time = 0;
-    _player.position = CGPointMake(self.size.width/2, ((int)self.size.height*.1));
-    
+    _player.position = CGPointMake(self.size.width/2, ((int)self.size.height*.2));
+    _scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),self.size.height*4/5);
     _blocks = [[NSMutableArray alloc] init];
     
     _treeSpawn = CGPointMake(self.size.width/2, self.size.height*.7);
@@ -151,8 +156,8 @@
 
 
 -(void)blowUp:(SKSpriteNode*)node{
-    SKAction *expand = [SKAction resizeByWidth:2*node.size.width height:2*node.size.height duration:0.3];
-    SKAction *fadeOut = [SKAction fadeOutWithDuration:0.3];
+    SKAction *expand = [SKAction resizeByWidth:3*node.size.width height:3*node.size.height duration:0.2];
+    SKAction *fadeOut = [SKAction fadeOutWithDuration:0.15];
     SKAction *remove = [SKAction removeFromParent];
     if([node parent] != NULL)
         [node runAction:[SKAction sequence:@[expand,fadeOut,remove]]];

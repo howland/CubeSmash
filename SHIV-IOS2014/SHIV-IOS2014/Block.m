@@ -16,7 +16,7 @@
     _over = 0;
     _a =0;
     _b = 0;
-    _rad = 0.93324753;
+    _rad = 1.13324753;
     self.screenSize =screenSize;
     _over = 1 - 2*((double)(arc4random()%100))/100.0;
 	_x = position.x;
@@ -24,7 +24,6 @@
     _spawn = position;
     
     self = [super init];
-    
     
     //_blockSprite = [[SKSpriteNode alloc] initWithImageNamed:@"Block"];
    // _blockSprite.size = CGSizeMake(_a, _b);
@@ -35,7 +34,7 @@
 }
 
 -(void)update{
-    _a = (int)( (_y-_spawn.y)/tan(_rad)/4.0	);
+    _a = (int)( (_y-_spawn.y)/tan(_rad)/5.0	);
     _b = _a;
     
     _x = _screenSize.width/2 - (_y-_spawn.y)/tan(_rad)*_over;
@@ -43,11 +42,12 @@
     _blockSprite.position = CGPointMake(_x,2*_spawn.y - _y);
     _blockSprite.size = CGSizeMake(_a, _b);
     _dy = (_y-_spawn.y)/30.0;
-    if(_dy==0)
-    {if(_time%10==0)
-        _dy = 1;
-    else
-        _dy = 0;}
+    if(_dy==0){
+        if(_time%10==0)
+            _dy = 1;
+        else
+            _dy = 0;
+    }
     _y+=_dy;
     _time++;
 }
