@@ -98,13 +98,13 @@
         [self addChild:side2];
         
         
-        /* COMMENTED OUT LIVE BITCOIN PRICE FETCH
-           USE HARD CODED VALUE INCASE OF INTERNET PROBLEMS
-        _bitdata = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://coinbase.com/api/v1/prices/buy"]];
+        /* COMMENTED OUT LIVE BITCOIN PRICE FETCH */
+  //         USE HARD CODED VALUE INCASE OF INTERNET PROBLEMS
+      /*  _bitdata = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://coinbase.com/api/v1/prices/buy"]];
         NSString *bitstr = [[NSString alloc] initWithData:_bitdata encoding:NSUTF8StringEncoding];
         NSString *justprice = [bitstr substringWithRange:NSMakeRange(23,30)];
         _coinprice= [justprice floatValue];
-        */
+    */
         _coinprice = 421;
         
         
@@ -138,10 +138,16 @@
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        _player.position = CGPointMake(location.x, _player.position.y);
+        //_player.position = CGPointMake(location.x, _player.position.y);
+        int newX = _player.position.x + (_lastTouchX-location.x);
+        _player.position = CGPointMake(_player.position.x + (_lastTouchX-location.x), _player.position.y);
         _lastTouchX = location.x;
 
     }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    //reset last touch?
 }
 
 -(void)reset{
