@@ -135,12 +135,35 @@
     }
 }
 
+/*
+ TO FIX:  HORIBLE CHECKING >> too many if statements, will process way to much
+ */
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         //_player.position = CGPointMake(location.x, _player.position.y);
-        int newX = _player.position.x + (_lastTouchX-location.x);
-        _player.position = CGPointMake(_player.position.x + (_lastTouchX-location.x), _player.position.y);
+        int dX = -6.6*(_lastTouchX-location.x);
+        int newX = _player.position.x + dX;
+        if(_player.position.x<self.size.width/10){
+            if(dX>0){
+                _player.position = CGPointMake(newX, _player.position.y);
+            }
+        }else if(_player.position.x>self.size.width*.9){
+            if(dX<0){
+                _player.position = CGPointMake(newX, _player.position.y);
+            }
+        }else{
+            if(newX>self.size.width*.9){
+                //do nothing
+            }else if(newX<self.size.width*.1){
+                //do nothing
+            }else{
+                _player.position = CGPointMake(newX, _player.position.y);
+            }
+        }
+        //if((_player.position.x>0) && (_player.position.x<self.size.width)){
+        //    _player.position = CGPointMake(newX, _player.position.y);
+        //}
         _lastTouchX = location.x;
 
     }
