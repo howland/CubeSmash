@@ -242,6 +242,7 @@
         if((_time%5==0) && (arc4random()%4==0)){
             Tree *treeTemp = [[Tree alloc] initWithPosition:_treeSpawn andScreenSize:self.size];
             [_trees addObject:treeTemp];
+            treeTemp.zPosition = (int)100-abs(treeTemp.spawn.x-self.size.width/2);
             [self addChild:treeTemp.treeSprite];
         }
         
