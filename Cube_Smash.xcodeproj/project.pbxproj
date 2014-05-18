@@ -53,15 +53,15 @@
 		03B7371F1915FC050038B447 /* Tree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tree.m; sourceTree = "<group>"; };
 		03F809131915BD5F005D3905 /* SpriteSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpriteSuper.h; path = ../SpriteSuper.h; sourceTree = "<group>"; };
 		03F809141915BD5F005D3905 /* SpriteSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteSuper.m; path = ../SpriteSuper.m; sourceTree = "<group>"; };
-		F7038CBD19132E130023ECDE /* SHIV-IOS2014.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SHIV-IOS2014.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7038CBD19132E130023ECDE /* Cube_Smash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cube_Smash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7038CC019132E130023ECDE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F7038CC219132E130023ECDE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F7038CC419132E130023ECDE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F7038CC619132E130023ECDE /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		F7038CCA19132E130023ECDE /* SHIV-IOS2014-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SHIV-IOS2014-Info.plist"; sourceTree = "<group>"; };
+		F7038CCA19132E130023ECDE /* Cube_Smash-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cube_Smash-Info.plist"; sourceTree = "<group>"; };
 		F7038CCC19132E130023ECDE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7038CCE19132E130023ECDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F7038CD019132E130023ECDE /* SHIV-IOS2014-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SHIV-IOS2014-Prefix.pch"; sourceTree = "<group>"; };
+		F7038CD019132E130023ECDE /* Cube_Smash-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cube_Smash-Prefix.pch"; sourceTree = "<group>"; };
 		F7038CD119132E130023ECDE /* SKPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKPAppDelegate.h; sourceTree = "<group>"; };
 		F7038CD219132E130023ECDE /* SKPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKPAppDelegate.m; sourceTree = "<group>"; };
 		F7038CD519132E130023ECDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -71,9 +71,9 @@
 		F7038CDD19132E130023ECDE /* SKPMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKPMyScene.h; sourceTree = "<group>"; };
 		F7038CDE19132E130023ECDE /* SKPMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKPMyScene.m; sourceTree = "<group>"; };
 		F7038CE219132E130023ECDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F7038CE819132E130023ECDE /* SHIV-IOS2014Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SHIV-IOS2014Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7038CE819132E130023ECDE /* Cube_SmashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Cube_SmashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7038CE919132E130023ECDE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		F7038CF119132E130023ECDE /* SHIV-IOS2014Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SHIV-IOS2014Tests-Info.plist"; sourceTree = "<group>"; };
+		F7038CF119132E130023ECDE /* Cube_SmashTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cube_SmashTests-Info.plist"; sourceTree = "<group>"; };
 		F7038CF319132E130023ECDE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7038CF519132E130023ECDE /* SHIV_IOS2014Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHIV_IOS2014Tests.m; sourceTree = "<group>"; };
 		F7DC836C1917008F0087DAAE /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 		F7038CBE19132E130023ECDE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F7038CBD19132E130023ECDE /* SHIV-IOS2014.app */,
-				F7038CE819132E130023ECDE /* SHIV-IOS2014Tests.xctest */,
+				F7038CBD19132E130023ECDE /* Cube_Smash.app */,
+				F7038CE819132E130023ECDE /* Cube_SmashTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,10 +175,10 @@
 		F7038CC919132E130023ECDE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F7038CCA19132E130023ECDE /* SHIV-IOS2014-Info.plist */,
+				F7038CCA19132E130023ECDE /* Cube_Smash-Info.plist */,
 				F7038CCB19132E130023ECDE /* InfoPlist.strings */,
 				F7038CCE19132E130023ECDE /* main.m */,
-				F7038CD019132E130023ECDE /* SHIV-IOS2014-Prefix.pch */,
+				F7038CD019132E130023ECDE /* Cube_Smash-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -195,7 +195,7 @@
 		F7038CF019132E130023ECDE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F7038CF119132E130023ECDE /* SHIV-IOS2014Tests-Info.plist */,
+				F7038CF119132E130023ECDE /* Cube_SmashTests-Info.plist */,
 				F7038CF219132E130023ECDE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -204,9 +204,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F7038CBC19132E130023ECDE /* SHIV-IOS2014 */ = {
+		F7038CBC19132E130023ECDE /* Cube_Smash */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7038CF919132E130023ECDE /* Build configuration list for PBXNativeTarget "SHIV-IOS2014" */;
+			buildConfigurationList = F7038CF919132E130023ECDE /* Build configuration list for PBXNativeTarget "Cube_Smash" */;
 			buildPhases = (
 				F7038CB919132E130023ECDE /* Sources */,
 				F7038CBA19132E130023ECDE /* Frameworks */,
@@ -216,14 +216,14 @@
 			);
 			dependencies = (
 			);
-			name = "SHIV-IOS2014";
+			name = Cube_Smash;
 			productName = "SHIV-IOS2014";
-			productReference = F7038CBD19132E130023ECDE /* SHIV-IOS2014.app */;
+			productReference = F7038CBD19132E130023ECDE /* Cube_Smash.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F7038CE719132E130023ECDE /* SHIV-IOS2014Tests */ = {
+		F7038CE719132E130023ECDE /* Cube_SmashTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7038CFC19132E130023ECDE /* Build configuration list for PBXNativeTarget "SHIV-IOS2014Tests" */;
+			buildConfigurationList = F7038CFC19132E130023ECDE /* Build configuration list for PBXNativeTarget "Cube_SmashTests" */;
 			buildPhases = (
 				F7038CE419132E130023ECDE /* Sources */,
 				F7038CE519132E130023ECDE /* Frameworks */,
@@ -234,9 +234,9 @@
 			dependencies = (
 				F7038CEE19132E130023ECDE /* PBXTargetDependency */,
 			);
-			name = "SHIV-IOS2014Tests";
+			name = Cube_SmashTests;
 			productName = "SHIV-IOS2014Tests";
-			productReference = F7038CE819132E130023ECDE /* SHIV-IOS2014Tests.xctest */;
+			productReference = F7038CE819132E130023ECDE /* Cube_SmashTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -254,7 +254,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F7038CB819132E130023ECDE /* Build configuration list for PBXProject "SHIV-IOS2014" */;
+			buildConfigurationList = F7038CB819132E130023ECDE /* Build configuration list for PBXProject "Cube_Smash" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -267,8 +267,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F7038CBC19132E130023ECDE /* SHIV-IOS2014 */,
-				F7038CE719132E130023ECDE /* SHIV-IOS2014Tests */,
+				F7038CBC19132E130023ECDE /* Cube_Smash */,
+				F7038CE719132E130023ECDE /* Cube_SmashTests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,7 +327,7 @@
 /* Begin PBXTargetDependency section */
 		F7038CEE19132E130023ECDE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F7038CBC19132E130023ECDE /* SHIV-IOS2014 */;
+			target = F7038CBC19132E130023ECDE /* Cube_Smash */;
 			targetProxy = F7038CED19132E130023ECDE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -446,9 +446,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SHIV-IOS2014/SHIV-IOS2014-Prefix.pch";
-				INFOPLIST_FILE = "SHIV-IOS2014/SHIV-IOS2014-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "SHIV-IOS2014/Cube_Smash-Prefix.pch";
+				INFOPLIST_FILE = "SHIV-IOS2014/Cube_Smash-Info.plist";
+				PRODUCT_NAME = Cube_Smash;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -460,9 +460,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SHIV-IOS2014/SHIV-IOS2014-Prefix.pch";
-				INFOPLIST_FILE = "SHIV-IOS2014/SHIV-IOS2014-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "SHIV-IOS2014/Cube_Smash-Prefix.pch";
+				INFOPLIST_FILE = "SHIV-IOS2014/Cube_Smash-Info.plist";
+				PRODUCT_NAME = Cube_Smash;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -483,8 +483,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "SHIV-IOS2014Tests/SHIV-IOS2014Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "SHIV-IOS2014Tests/Cube_SmashTests-Info.plist";
+				PRODUCT_NAME = Cube_SmashTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -501,8 +501,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SHIV-IOS2014/SHIV-IOS2014-Prefix.pch";
-				INFOPLIST_FILE = "SHIV-IOS2014Tests/SHIV-IOS2014Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "SHIV-IOS2014Tests/Cube_SmashTests-Info.plist";
+				PRODUCT_NAME = Cube_SmashTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -511,7 +511,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F7038CB819132E130023ECDE /* Build configuration list for PBXProject "SHIV-IOS2014" */ = {
+		F7038CB819132E130023ECDE /* Build configuration list for PBXProject "Cube_Smash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7038CF719132E130023ECDE /* Debug */,
@@ -520,7 +520,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7038CF919132E130023ECDE /* Build configuration list for PBXNativeTarget "SHIV-IOS2014" */ = {
+		F7038CF919132E130023ECDE /* Build configuration list for PBXNativeTarget "Cube_Smash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7038CFA19132E130023ECDE /* Debug */,
@@ -529,7 +529,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7038CFC19132E130023ECDE /* Build configuration list for PBXNativeTarget "SHIV-IOS2014Tests" */ = {
+		F7038CFC19132E130023ECDE /* Build configuration list for PBXNativeTarget "Cube_SmashTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7038CFD19132E130023ECDE /* Debug */,
