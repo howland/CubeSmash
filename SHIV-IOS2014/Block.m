@@ -1,8 +1,8 @@
 //
 //  Block.m
-//  SHIV-IOS2014
+//  Cube_Smash_2014
 //
-//  Copyright (c) 2014 Shiv Pande. All rights reserved.
+//  Copyright (c) 2014 Joshua Howland. All rights reserved.
 //
 
 #import "Block.h"
