@@ -39,6 +39,7 @@
     //NSLog(@"x , %f",_y);
     _treeSprite.position = CGPointMake(_x,2*_spawn.y - _y);
     _treeSprite.size = CGSizeMake(_a, _b);
+    _treeSprite.zPosition = _a;
     _dy = (_y-_spawn.y)/30.0;
     if(_dy==0){
             _dy = 1;

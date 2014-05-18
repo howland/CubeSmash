@@ -27,7 +27,7 @@
 
 @property float coinprice;
 
-@property int lastTouchX;
+@property CGPoint lastTouch;
 
 @property SKLabelNode *tapToStart;
 @property SKLabelNode *countLabel;
@@ -131,7 +131,7 @@
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        _lastTouchX = location.x;
+        _lastTouch = location;
     }
 }
 
@@ -142,29 +142,34 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         //_player.position = CGPointMake(location.x, _player.position.y);
-        int dX = -6.6*(_lastTouchX-location.x);
+        int dX = -4.6*(_lastTouch.x-location.x);
         int newX = _player.position.x + dX;
-        if(_player.position.x<self.size.width/10){
-            if(dX>0){
-                _player.position = CGPointMake(newX, _player.position.y);
-            }
-        }else if(_player.position.x>self.size.width*.9){
-            if(dX<0){
-                _player.position = CGPointMake(newX, _player.position.y);
-            }
+        int dY = abs(-_lastTouch.y + location.y);
+        if(dY>self.size.height/40){ //should try powerup..
+            [self blastPowerUp];
         }else{
-            if(newX>self.size.width*.9){
-                //do nothing
-            }else if(newX<self.size.width*.1){
-                //do nothing
+            if(_player.position.x<self.size.width/10){
+                if(dX>0){
+                    _player.position = CGPointMake(newX, _player.position.y);
+                }
+            }else if(_player.position.x>self.size.width*.9){
+                if(dX<0){
+                    _player.position = CGPointMake(newX, _player.position.y);
+                }
             }else{
-                _player.position = CGPointMake(newX, _player.position.y);
+                if(newX>self.size.width*.9){
+                    //do nothing
+                }else if(newX<self.size.width*.1){
+                    //do nothing
+                }else{
+                    _player.position = CGPointMake(newX, _player.position.y);
+                }
             }
         }
         //if((_player.position.x>0) && (_player.position.x<self.size.width)){
         //    _player.position = CGPointMake(newX, _player.position.y);
         //}
-        _lastTouchX = location.x;
+        _lastTouch = location;
 
     }
 }
@@ -194,6 +199,31 @@
     SKAction *remove = [SKAction removeFromParent];
     if([node parent] != NULL)
         [node runAction:[SKAction sequence:@[expand,fadeOut,remove]]];
+}
+
+
+-(void)blastPowerUp{
+    for(int i=(int)_blocks.count-1;i>=0;i--){
+        Block *tempBlock = _blocks[i];
+        SKSpriteNode *nTemp = tempBlock.blockSprite;
+        
+        NSString *burstPath =
+        [[NSBundle mainBundle] pathForResource:@"blockExplosion" ofType:@"sks"];
+        
+        SKEmitterNode *burstEmitter =
+        [NSKeyedUnarchiver unarchiveObjectWithFile:burstPath];
+        
+        burstEmitter.position = CGPointMake(nTemp.position.x,nTemp.position.y);
+        
+        [self addChild:burstEmitter];
+        SKAction *remove = [SKAction removeFromParent];
+        SKAction *fadeOut = [SKAction fadeOutWithDuration:0.15];
+        [burstEmitter runAction:[SKAction sequence:@[fadeOut,remove]]];
+        
+        //if([nTemp parent] != NULL)
+        [nTemp removeFromParent];
+        [_blocks removeObject:tempBlock];
+    }
 }
 
 
@@ -242,7 +272,7 @@
         if((_time%5==0) && (arc4random()%4==0)){
             Tree *treeTemp = [[Tree alloc] initWithPosition:_treeSpawn andScreenSize:self.size];
             [_trees addObject:treeTemp];
-            treeTemp.zPosition = (int)100-abs(treeTemp.spawn.x-self.size.width/2);
+           // treeTemp.zPosition = (int)100-abs(treeTemp.spawn.x-self.size.width/2);
             [self addChild:treeTemp.treeSprite];
         }
         
