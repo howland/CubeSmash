@@ -27,7 +27,7 @@
 
 @property float coinprice;
 
-@property int lastTouchX;
+@property CGPoint lastTouch;
 
 @property SKLabelNode *tapToStart;
 @property SKLabelNode *countLabel;
@@ -131,7 +131,7 @@
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        _lastTouchX = location.x;
+        _lastTouch = location;
     }
 }
 
@@ -142,8 +142,12 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         //_player.position = CGPointMake(location.x, _player.position.y);
-        int dX = -6.6*(_lastTouchX-location.x);
+        int dX = -6.6*(_lastTouch.x-location.x);
         int newX = _player.position.x + dX;
+        int dY = _lastTouch.y - location.y;
+        if(dY>self.size.height/20){ //should try powerup..
+            [self blastPowerUp];
+        }
         if(_player.position.x<self.size.width/10){
             if(dX>0){
                 _player.position = CGPointMake(newX, _player.position.y);
@@ -164,7 +168,7 @@
         //if((_player.position.x>0) && (_player.position.x<self.size.width)){
         //    _player.position = CGPointMake(newX, _player.position.y);
         //}
-        _lastTouchX = location.x;
+        _lastTouch = location;
 
     }
 }
@@ -196,6 +200,32 @@
         [node runAction:[SKAction sequence:@[expand,fadeOut,remove]]];
 }
 
+
+-(void)blastPowerUp{
+    for(int i=0;i<_blocks.count;i++){
+        Block *tempBlock = _blocks[i];
+        SKSpriteNode *nTemp = tempBlock.blockSprite;
+        
+        NSString *burstPath =
+        [[NSBundle mainBundle] pathForResource:@"blockExplosion" ofType:@"sks"];
+        
+        SKEmitterNode *burstEmitter =
+        [NSKeyedUnarchiver unarchiveObjectWithFile:burstPath];
+        
+        burstEmitter.position = tempBlock.position;
+        
+        [self addChild:burstEmitter];
+        
+        
+        if([nTemp parent] != NULL)
+             [nTemp removeFromParent];
+        [_blocks removeObject:nTemp];
+    }
+}
+
+-(void)blast:(SKSpriteNode*)node{
+
+}
 
 /*
  Utility method that fades in the sprite node sent to it.
