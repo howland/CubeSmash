@@ -1,9 +1,8 @@
 //
 //  SKPMyScene.m
-//  SHIV-IOS2014
+//  Cube_Smash_2014
 //
-//  Created by Shiv Pande on 5/1/14.
-//  Copyright (c) 2014 Shiv Pande. All rights reserved.
+//  Copyright (c) 2014 Joshua Howland. All rights reserved.
 //
 
 #import "SKPMyScene.h"

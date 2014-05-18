@@ -122,8 +122,8 @@
 				0337563A192886B2002AE1FA /* blockExplosion.sks */,
 				0337563E19288707002AE1FA /* bck.png */,
 				0337563B192886B2002AE1FA /* spark.png */,
-				F7038CC819132E130023ECDE /* SHIV-IOS2014 */,
-				F7038CEF19132E130023ECDE /* SHIV-IOS2014Tests */,
+				F7038CC819132E130023ECDE /* Cube_Smash_2014 */,
+				F7038CEF19132E130023ECDE /* Cube_Smash_Tests */,
 				F7038CBF19132E130023ECDE /* Frameworks */,
 				F7038CBE19132E130023ECDE /* Products */,
 			);
@@ -150,7 +150,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F7038CC819132E130023ECDE /* SHIV-IOS2014 */ = {
+		F7038CC819132E130023ECDE /* Cube_Smash_2014 */ = {
 			isa = PBXGroup;
 			children = (
 				03F809161915BD6A005D3905 /* Util */,
@@ -169,6 +169,7 @@
 				F7038CE219132E130023ECDE /* Images.xcassets */,
 				F7038CC919132E130023ECDE /* Supporting Files */,
 			);
+			name = Cube_Smash_2014;
 			path = "SHIV-IOS2014";
 			sourceTree = "<group>";
 		};
@@ -183,12 +184,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F7038CEF19132E130023ECDE /* SHIV-IOS2014Tests */ = {
+		F7038CEF19132E130023ECDE /* Cube_Smash_Tests */ = {
 			isa = PBXGroup;
 			children = (
 				F7038CF519132E130023ECDE /* SHIV_IOS2014Tests.m */,
 				F7038CF019132E130023ECDE /* Supporting Files */,
 			);
+			name = Cube_Smash_Tests;
 			path = "SHIV-IOS2014Tests";
 			sourceTree = "<group>";
 		};
