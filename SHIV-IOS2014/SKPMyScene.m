@@ -144,7 +144,7 @@
         //_player.position = CGPointMake(location.x, _player.position.y);
         int dX = -6.6*(_lastTouch.x-location.x);
         int newX = _player.position.x + dX;
-        int dY = _lastTouch.y - location.y;
+        int dY = -_lastTouch.y + location.y;
         if(dY>self.size.height/20){ //should try powerup..
             [self blastPowerUp];
         }
@@ -212,20 +212,19 @@
         SKEmitterNode *burstEmitter =
         [NSKeyedUnarchiver unarchiveObjectWithFile:burstPath];
         
-        burstEmitter.position = tempBlock.position;
+        burstEmitter.position = CGPointMake(nTemp.position.x,nTemp.position.y);
         
         [self addChild:burstEmitter];
+        SKAction *remove = [SKAction removeFromParent];
+        SKAction *fadeOut = [SKAction fadeOutWithDuration:0.15];
+        [burstEmitter runAction:[SKAction sequence:@[fadeOut,remove]]];
         
-        
-        if([nTemp parent] != NULL)
-             [nTemp removeFromParent];
-        [_blocks removeObject:nTemp];
+        //if([nTemp parent] != NULL)
+        [nTemp removeFromParent];
+        [_blocks removeObject:tempBlock];
     }
 }
 
--(void)blast:(SKSpriteNode*)node{
-
-}
 
 /*
  Utility method that fades in the sprite node sent to it.
