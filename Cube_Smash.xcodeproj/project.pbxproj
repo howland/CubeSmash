@@ -10,6 +10,7 @@
 		0337563C192886B2002AE1FA /* blockExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0337563A192886B2002AE1FA /* blockExplosion.sks */; };
 		0337563D192886B2002AE1FA /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0337563B192886B2002AE1FA /* spark.png */; };
 		03375641192AEFEA002AE1FA /* bck.png in Resources */ = {isa = PBXBuildFile; fileRef = 03375640192AEFEA002AE1FA /* bck.png */; };
+		03375644192B1B03002AE1FA /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 03375643192B1B03002AE1FA /* MenuScene.m */; };
 		03B737191915C7DF0038B447 /* Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B737181915C7DF0038B447 /* Block.m */; };
 		03B737201915FC050038B447 /* Tree.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B7371F1915FC050038B447 /* Tree.m */; };
 		03F809151915BD5F005D3905 /* SpriteSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F809141915BD5F005D3905 /* SpriteSuper.m */; };
@@ -47,6 +48,8 @@
 		0337563A192886B2002AE1FA /* blockExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = blockExplosion.sks; sourceTree = "<group>"; };
 		0337563B192886B2002AE1FA /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		03375640192AEFEA002AE1FA /* bck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bck.png; path = "SHIV-IOS2014/bck.png"; sourceTree = "<group>"; };
+		03375642192B1B03002AE1FA /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuScene.h; path = ../MenuScene.h; sourceTree = "<group>"; };
+		03375643192B1B03002AE1FA /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuScene.m; path = ../MenuScene.m; sourceTree = "<group>"; };
 		03B737171915C7DF0038B447 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 		03B737181915C7DF0038B447 /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Block.m; sourceTree = "<group>"; };
 		03B7371E1915FC050038B447 /* Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				03F809161915BD6A005D3905 /* Util */,
 				03F809141915BD5F005D3905 /* SpriteSuper.m */,
 				03F809131915BD5F005D3905 /* SpriteSuper.h */,
+				03375642192B1B03002AE1FA /* MenuScene.h */,
+				03375643192B1B03002AE1FA /* MenuScene.m */,
 				F7038CD419132E130023ECDE /* Main_iPhone.storyboard */,
 				F7038CD719132E130023ECDE /* Main_iPad.storyboard */,
 				F7038CDD19132E130023ECDE /* SKPMyScene.h */,
@@ -311,6 +316,7 @@
 				03F809151915BD5F005D3905 /* SpriteSuper.m in Sources */,
 				03B737191915C7DF0038B447 /* Block.m in Sources */,
 				F7038CDC19132E130023ECDE /* SKPViewController.m in Sources */,
+				03375644192B1B03002AE1FA /* MenuScene.m in Sources */,
 				F7038CD319132E130023ECDE /* SKPAppDelegate.m in Sources */,
 				03B737201915FC050038B447 /* Tree.m in Sources */,
 			);

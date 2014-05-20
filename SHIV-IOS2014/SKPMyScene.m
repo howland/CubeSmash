@@ -15,6 +15,7 @@
 
 @property int time;
 @property int score;
+@property int highScore;
 @property BOOL playing;
 @property SKSpriteNode *player;
 @property NSMutableArray *blocks;
@@ -316,6 +317,15 @@
         SKSpriteNode *nTemp = tempBlock.blockSprite;
         [self blowUp:nTemp];
     }
+    int highScoreTemp = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"HighScore"];
+    if(highScoreTemp<1){
+        highScoreTemp = 0;
+    }
+    _highScore = highScoreTemp;
+    if(_score>highScoreTemp){
+        [[NSUserDefaults standardUserDefaults] setInteger:_score forKey:@"HighScore"];
+        _highScore = _score;
+    }
     [self reset];
 }
 
@@ -329,6 +339,7 @@
  */
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+    NSLog(@"HIGH SCORE: %i",_highScore);
     if(_playing){
         _powerUpTimer--;
         _time++;
