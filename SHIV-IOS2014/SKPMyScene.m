@@ -23,6 +23,7 @@
 @property Coin *coin;
 @property BOOL coinInUse;
 @property int coinCount;
+@property int powerUpTimer;
 
 @property float coinprice;
 
@@ -39,6 +40,12 @@
 
 @implementation SKPMyScene
 
+/*
+ Init method.  Initialized most game objects and sets up
+   scene.
+ @param CGSize size: Size of current frame to work with.
+ @return id: id of scene created
+ */
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
@@ -57,7 +64,7 @@
         _tapToStart.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         
         _countLabel = [SKLabelNode labelNodeWithFontNamed:@"Georgia-Bold"];
-        _countLabel.text = [NSString stringWithFormat:@"Time:%i, Coins:%i",(int)_time/10, (int)_coinCount];
+        _countLabel.text = [NSString stringWithFormat:@"Coins:%i", (int)_coinCount];
         _countLabel.fontSize = self.size.width/17;
         [self addChild:_countLabel];
         _countLabel.zPosition = 100;
@@ -71,6 +78,7 @@
         [self addChild:_scoreLabel];
         _scoreLabel.zPosition = 100;
         
+        _powerUpTimer = 0;
         
         
         _trees = [[NSMutableArray alloc] init];
@@ -122,6 +130,13 @@
     return self;
 }
 
+/*
+ Method called by system when a touch begins.
+ @param NSSet touches: NSSet data type of all touches currently started
+ @param UIEvent even: UIEvent marking touch beginining
+   Both these parameters dont need to be worried about.
+ @return: none
+ */
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     if(!_playing){
@@ -137,6 +152,12 @@
 
 /*
  TO FIX:  HORIBLE CHECKING >> too many if statements, will process way to much
+ Method called every time a touch is moved.  Contains nessesary updating to move
+ players sprite.
+ @param NSSet touches: NSSet data type of all touches currently started
+ @param UIEvent even: UIEvent marking touch beginining
+ Both these parameters dont need to be worried about.
+ @return: none
  */
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UITouch *touch in touches) {
@@ -146,8 +167,9 @@
         int newX = _player.position.x + dX;
         int dY = abs(-_lastTouch.y + location.y);
         if(dY>self.size.height/40){ //should try powerup..
-            if(_coinCount>0){
+            if(_coinCount>0 && _powerUpTimer<0){
                 _coinCount--;
+                _powerUpTimer = 60;
                 [self blastPowerUp];
             }
         }else{
@@ -174,10 +196,23 @@
     }
 }
 
+/*
+ Method called every time a unique touch ends.
+ @param NSSet touches: NSSet data type of all touches currently started
+ @param UIEvent even: UIEvent marking touch beginining
+ Both these parameters dont need to be worried about.
+ @return: none
+ */
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     //reset last touch?
 }
 
+/*
+ Method containing all game reset information.  Called each time a game ends
+ and scene needs to be reset.
+ @param: none
+ @return: none
+ */
 -(void)reset{
     [self addChild:_tapToStart];
     
@@ -192,7 +227,13 @@
     [_coin.coinSprite removeFromParent];
 }
 
-
+/*
+ Utility method that "blows" up sprte sent to it then removes.
+ Also removes node from scene, with safety check that garentees 
+ it does not currently have a parent.
+ @param SKSpriteNode node: node to be faded in to scene
+ @return: none
+ */
 -(void)blowUp:(SKSpriteNode*)node{
     SKAction *expand = [SKAction resizeByWidth:3*node.size.width height:3*node.size.height duration:0.2];
     SKAction *fadeOut = [SKAction fadeOutWithDuration:0.15];
@@ -201,7 +242,12 @@
         [node runAction:[SKAction sequence:@[expand,fadeOut,remove]]];
 }
 
-
+/*
+ Method that initiates the blast power up that removes all of the
+ block nodes on the screen.  Calls blow up on each of the blocks.
+ @param: none
+ @return: none
+ */
 -(void)blastPowerUp{
     for(int i=(int)_blocks.count-1;i>=0;i--){
         Block *tempBlock = _blocks[i];
@@ -233,6 +279,8 @@
  Utility method that fades in the sprite node sent to it.
  Also adds node to current scene, but only if the spritenode
  does not currenlty have a parent (safety check)
+ @param SKSpriteNode node: node to be faded in to scene
+ @return: none
  */
 -(void)fadeIn:(SKSpriteNode*)node{
     if([node parent]==NULL)
@@ -242,7 +290,13 @@
     [node runAction:[SKAction sequence:@[fadeIn]]];
 }
 
-
+/*
+ Utility method that fades out sprites then removes the sprite
+ if it has a parent.  Error checking in place so sprites without
+ parents will not be removed.
+ @param SKSpriteNode node: node to be faded out and removed
+ @return: none
+ */
 -(void)fadeOut:(SKSpriteNode*)node{
     SKAction *fadeOut = [SKAction fadeOutWithDuration:0.14];
     SKAction *remove = [SKAction removeFromParent];
@@ -250,24 +304,37 @@
         [node runAction:[SKAction sequence:@[fadeOut,remove]]];
 }
 
-
+/*
+ Method that contains game over procedure.  Explodes all blocks and
+ resets blocksprite.
+ @param: none
+ @return: none
+ */
 -(void)gameOver{
     for(int i=0;i<_blocks.count;i++){
         Block *tempBlock = _blocks[i];
         SKSpriteNode *nTemp = tempBlock.blockSprite;
         [self blowUp:nTemp];
     }
-    
     [self reset];
 }
 
+/*
+ Method that sprite kit calls to update game 60 times a second.
+ Contains all update procedures nessesary, as well as collision 
+ checking.
+ @param CFTimeInterval current time: Current time.  System calls
+   so no need to ever call this method.
+ @return: none
+ */
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     if(_playing){
+        _powerUpTimer--;
         _time++;
         if(_time%10==0){
-            _score = _time+_coinCount*_coinprice; //NEED A HUERISTIC FOR SCORE
-            _countLabel.text = [NSString stringWithFormat:@"Time:%i, Coins:%i",(int)_time/10, (int)_coinCount];
+            _score = _time+_coinCount*_coinprice;
+            _countLabel.text = [NSString stringWithFormat:@"Coins:%i", (int)_coinCount];
             _scoreLabel.text = [NSString stringWithFormat:@"%i",(int)_score];
         }
         
