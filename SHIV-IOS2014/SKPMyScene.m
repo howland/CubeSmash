@@ -96,16 +96,6 @@
         [side2 setStrokeColor:[UIColor greenColor]];
         [self addChild:side2];
         
-        
-        /* COMMENTED OUT LIVE BITCOIN PRICE FETCH */
-        //   USE HARD CODED VALUE INCASE OF INTERNET PROBLEMS
-        /*  _bitdata = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://coinbase.com/api/v1/prices/buy"]];
-        NSString *bitstr = [[NSString alloc] initWithData:_bitdata encoding:NSUTF8StringEncoding];
-        NSString *justprice = [bitstr substringWithRange:NSMakeRange(23,30)];
-        _coinprice= [justprice floatValue];
-        */
-        //_coinprice = 421;
-        
         @try {
             _bitdata = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://coinbase.com/api/v1/prices/buy"]];
             NSString *bitstr = [[NSString alloc] initWithData:_bitdata encoding:NSUTF8StringEncoding];
@@ -224,7 +214,7 @@
         [NSKeyedUnarchiver unarchiveObjectWithFile:burstPath];
         
         burstEmitter.position = CGPointMake(nTemp.position.x,nTemp.position.y);
-        int sizeFactor = 3;
+        int sizeFactor = 20;
         burstEmitter.particleSize = CGSizeMake(nTemp.size.width*sizeFactor,nTemp.size.height*sizeFactor);
         
         [self addChild:burstEmitter];
@@ -337,7 +327,8 @@
             if([_player intersectsNode:_coin.coinSprite]){
                 _coinCount++;
                 _coinInUse = false;
-                [_coin.coinSprite removeFromParent];
+                [self blowUp:_coin.coinSprite];
+                //[_coin.coinSprite removeFromParent];
             }
         }
         
