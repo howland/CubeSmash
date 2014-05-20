@@ -98,15 +98,26 @@
         
         
         /* COMMENTED OUT LIVE BITCOIN PRICE FETCH */
-  //         USE HARD CODED VALUE INCASE OF INTERNET PROBLEMS
-      /*  _bitdata = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://coinbase.com/api/v1/prices/buy"]];
+        //   USE HARD CODED VALUE INCASE OF INTERNET PROBLEMS
+        /*  _bitdata = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://coinbase.com/api/v1/prices/buy"]];
         NSString *bitstr = [[NSString alloc] initWithData:_bitdata encoding:NSUTF8StringEncoding];
         NSString *justprice = [bitstr substringWithRange:NSMakeRange(23,30)];
         _coinprice= [justprice floatValue];
-    */
-        _coinprice = 421;
+        */
+        //_coinprice = 421;
         
-        
+        @try {
+            _bitdata = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://coinbase.com/api/v1/prices/buy"]];
+            NSString *bitstr = [[NSString alloc] initWithData:_bitdata encoding:NSUTF8StringEncoding];
+            NSString *justprice = [bitstr substringWithRange:NSMakeRange(23,30)];
+            _coinprice= [justprice floatValue];
+        }
+        @catch (NSException *exception) {
+            _coinprice = 421;
+        }
+        @finally {
+            //dont do anything.
+        }
         
         NSLog(@"Bitcoin Price: %i",(int)_coinprice);
         _priceLabel = [SKLabelNode labelNodeWithFontNamed:@"Georgia-Bold"];
@@ -145,7 +156,10 @@
         int newX = _player.position.x + dX;
         int dY = abs(-_lastTouch.y + location.y);
         if(dY>self.size.height/40){ //should try powerup..
-            [self blastPowerUp];
+            if(_coinCount>0){
+                _coinCount--;
+                [self blastPowerUp];
+            }
         }else{
             if(_player.position.x<self.size.width/10){
                 if(dX>0){
@@ -165,9 +179,6 @@
                 }
             }
         }
-        //if((_player.position.x>0) && (_player.position.x<self.size.width)){
-        //    _player.position = CGPointMake(newX, _player.position.y);
-        //}
         _lastTouch = location;
 
     }
@@ -213,6 +224,8 @@
         [NSKeyedUnarchiver unarchiveObjectWithFile:burstPath];
         
         burstEmitter.position = CGPointMake(nTemp.position.x,nTemp.position.y);
+        int sizeFactor = 3;
+        burstEmitter.particleSize = CGSizeMake(nTemp.size.width*sizeFactor,nTemp.size.height*sizeFactor);
         
         [self addChild:burstEmitter];
         SKAction *remove = [SKAction removeFromParent];

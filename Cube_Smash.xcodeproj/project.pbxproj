@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0337563C192886B2002AE1FA /* blockExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0337563A192886B2002AE1FA /* blockExplosion.sks */; };
 		0337563D192886B2002AE1FA /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0337563B192886B2002AE1FA /* spark.png */; };
-		0337563F19288707002AE1FA /* bck.png in Resources */ = {isa = PBXBuildFile; fileRef = 0337563E19288707002AE1FA /* bck.png */; };
+		03375641192AEFEA002AE1FA /* bck.png in Resources */ = {isa = PBXBuildFile; fileRef = 03375640192AEFEA002AE1FA /* bck.png */; };
 		03B737191915C7DF0038B447 /* Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B737181915C7DF0038B447 /* Block.m */; };
 		03B737201915FC050038B447 /* Tree.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B7371F1915FC050038B447 /* Tree.m */; };
 		03F809151915BD5F005D3905 /* SpriteSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F809141915BD5F005D3905 /* SpriteSuper.m */; };
@@ -46,7 +46,7 @@
 /* Begin PBXFileReference section */
 		0337563A192886B2002AE1FA /* blockExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = blockExplosion.sks; sourceTree = "<group>"; };
 		0337563B192886B2002AE1FA /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		0337563E19288707002AE1FA /* bck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bck.png; path = ../../Desktop/bck.png; sourceTree = "<group>"; };
+		03375640192AEFEA002AE1FA /* bck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bck.png; path = "SHIV-IOS2014/bck.png"; sourceTree = "<group>"; };
 		03B737171915C7DF0038B447 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 		03B737181915C7DF0038B447 /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Block.m; sourceTree = "<group>"; };
 		03B7371E1915FC050038B447 /* Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
@@ -120,8 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				0337563A192886B2002AE1FA /* blockExplosion.sks */,
-				0337563E19288707002AE1FA /* bck.png */,
 				0337563B192886B2002AE1FA /* spark.png */,
+				03375640192AEFEA002AE1FA /* bck.png */,
 				F7038CC819132E130023ECDE /* Cube_Smash_2014 */,
 				F7038CEF19132E130023ECDE /* Cube_Smash_Tests */,
 				F7038CBF19132E130023ECDE /* Frameworks */,
@@ -280,8 +280,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0337563F19288707002AE1FA /* bck.png in Resources */,
 				F7038CE319132E130023ECDE /* Images.xcassets in Resources */,
+				03375641192AEFEA002AE1FA /* bck.png in Resources */,
 				0337563D192886B2002AE1FA /* spark.png in Resources */,
 				F7038CD919132E130023ECDE /* Main_iPad.storyboard in Resources */,
 				F7038CD619132E130023ECDE /* Main_iPhone.storyboard in Resources */,
