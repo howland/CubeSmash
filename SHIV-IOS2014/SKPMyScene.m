@@ -167,10 +167,16 @@
         _playing = YES;
         [_tapToStart removeFromParent];
     }
-    
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         _lastTouch = location;
+        SKNode *na1 = [self nodeAtPoint:location];
+        if([na1.name isEqualToString:_pauseButton.name]){
+            //do some pause stuff
+            [self pauseGame];
+        }else if([na1.name isEqualToString:_resumeButton.name]){
+            [self resumeGame];
+        }
     }
 }
 
@@ -255,9 +261,7 @@
 /*
  Method that takes care of all resume game procedures.
  Fades out the pause button, fades in the resume button.
- Also pauses particle effects from ball & snow, as well as
- saves the state of the balls velocity prior to pause.  Also
- fades in a black tint node to indicate pause to user.
+ Also fades in dark background.
  */
 -(void)pauseGame{
     [self fadeOut:_pauseButton];
@@ -265,6 +269,19 @@
     [self fadeIn:_resumeButton];
     //[self addChild:_background];
     [self fadeIn:_background];
+    _pause = true;
+}
+
+/*
+ Method that resumes the game.  Fades out the resume button
+ and fades back in the pause button.  Removes the background
+ black tint.
+ */
+-(void)resumeGame{
+    [self fadeOut:_resumeButton];
+    [self fadeIn:_pauseButton];
+    [self fadeOut:_background];
+    _pause = false;
 }
 
 /*
