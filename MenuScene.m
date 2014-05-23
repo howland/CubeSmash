@@ -38,14 +38,14 @@
         _backGround.position = CGPointMake(-1*self.size.width + (int)(   arc4random()%(int)self.size.width*3     ), self.size.height/2);
         [self addChild:_backGround];
         
-        NSString *snowPath = [[NSBundle mainBundle] pathForResource:@"Snow" ofType:@"sks"];
-        _snow = [NSKeyedUnarchiver unarchiveObjectWithFile:snowPath];
-        _snow.particleSize = CGSizeMake(self.frame.size.width/20, self.frame.size.width/20);
-        _snow.alpha = 1.0f;
-        _snow.position = CGPointMake(self.size.width/2, self.size.height*1.1);
+        //NSString *snowPath = [[NSBundle mainBundle] pathForResource:@"Snow" ofType:@"sks"];
+        //_snow = [NSKeyedUnarchiver unarchiveObjectWithFile:snowPath];
+        //_snow.particleSize = CGSizeMake(self.frame.size.width/20, self.frame.size.width/20);
+        //_snow.alpha = 1.0f;
+        //_snow.position = CGPointMake(self.size.width/2, self.size.height*1.1);
         //_snow.particleSize = CGSizeMake(self.size.width/30,self.size.width/3);
         
-        [self addChild:_snow];
+        //[self addChild:_snow];
         
         
         _playButton = [[SKSpriteNode alloc] initWithImageNamed:@"play"];

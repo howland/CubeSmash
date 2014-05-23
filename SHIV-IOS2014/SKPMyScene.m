@@ -344,7 +344,8 @@
         _powerUpTimer--;
         _time++;
         if(_time%10==0){
-            _score = _time+_coinCount*_coinprice;
+            //_score = _time+_coinCount*_coinprice;
+            _score+=10;
             _countLabel.text = [NSString stringWithFormat:@"Coins:%i", (int)_coinCount];
             _scoreLabel.text = [NSString stringWithFormat:@"%i",(int)_score];
         }
@@ -404,6 +405,7 @@
         if(_coinInUse == true && _coin.coinSprite.position.y<self.size.height/3){
             if([_player intersectsNode:_coin.coinSprite]){
                 _coinCount++;
+                _score+=(int)_coinprice;
                 _coinInUse = false;
                 [self blowUp:_coin.coinSprite];
                 //[_coin.coinSprite removeFromParent];
