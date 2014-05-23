@@ -17,6 +17,11 @@
 @property int score;
 @property int highScore;
 @property BOOL playing;
+@property BOOL pause;
+@property SKSpriteNode *pauseButton;
+@property SKSpriteNode *resumeButton;
+
+@property SKSpriteNode *background;
 @property SKSpriteNode *player;
 @property NSMutableArray *blocks;
 @property NSMutableArray *trees;
@@ -25,6 +30,7 @@
 @property BOOL coinInUse;
 @property int coinCount;
 @property int powerUpTimer;
+
 
 @property float coinprice;
 
@@ -80,6 +86,7 @@
         _scoreLabel.zPosition = 100;
         
         _powerUpTimer = 0;
+        _pause = false;
         
         
         _trees = [[NSMutableArray alloc] init];
@@ -126,6 +133,22 @@
         _priceLabel.zPosition = 100;
         _priceLabel.position = CGPointMake(80,7);
         
+        _pauseButton = [[SKSpriteNode alloc] initWithImageNamed:@"Pause_Button"];
+        _pauseButton.size = CGSizeMake(self.size.width/8,self.size.width/8);
+        _pauseButton.position = CGPointMake(_pauseButton.size.width, -_pauseButton.size.width+self.size.height-self.size.width/10);
+        [self addChild:_pauseButton];
+        _pauseButton.zPosition = 100;
+        _pauseButton.name = @"Pause_Button";
+        
+        _resumeButton = [[SKSpriteNode alloc] initWithImageNamed:@"Play_Button"];
+        _resumeButton.position = _pauseButton.position;
+        _resumeButton.size = _pauseButton.size;
+        _resumeButton.zPosition = 100;
+        _resumeButton.name = @"Resume_Button";
+        
+        _background = [[SKSpriteNode alloc] initWithImageNamed:@"SplashScreen"];
+        _background.position = CGPointMake(self.size.width/2,self.size.height/2);
+        _background.size = self.size;
         
     }
     return self;
@@ -144,10 +167,16 @@
         _playing = YES;
         [_tapToStart removeFromParent];
     }
-    
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         _lastTouch = location;
+        SKNode *na1 = [self nodeAtPoint:location];
+        if([na1.name isEqualToString:_pauseButton.name]){
+            //do some pause stuff
+            [self pauseGame];
+        }else if([na1.name isEqualToString:_resumeButton.name]){
+            [self resumeGame];
+        }
     }
 }
 
@@ -226,6 +255,33 @@
     
     _treeSpawn = CGPointMake(self.size.width/2, self.size.height*.7);
     [_coin.coinSprite removeFromParent];
+}
+
+
+/*
+ Method that takes care of all resume game procedures.
+ Fades out the pause button, fades in the resume button.
+ Also fades in dark background.
+ */
+-(void)pauseGame{
+    [self fadeOut:_pauseButton];
+    // [self addChild:_resumeButton];
+    [self fadeIn:_resumeButton];
+    //[self addChild:_background];
+    [self fadeIn:_background];
+    _pause = true;
+}
+
+/*
+ Method that resumes the game.  Fades out the resume button
+ and fades back in the pause button.  Removes the background
+ black tint.
+ */
+-(void)resumeGame{
+    [self fadeOut:_resumeButton];
+    [self fadeIn:_pauseButton];
+    [self fadeOut:_background];
+    _pause = false;
 }
 
 /*
@@ -339,8 +395,8 @@
  */
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-    NSLog(@"HIGH SCORE: %i",_highScore);
-    if(_playing){
+    
+    if(_playing && !_pause){
         _powerUpTimer--;
         _time++;
         if(_time%10==0){
