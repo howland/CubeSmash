@@ -15,6 +15,7 @@
 
 @property int time;
 @property int score;
+@property int highScore;
 @property BOOL playing;
 @property SKSpriteNode *player;
 @property NSMutableArray *blocks;
@@ -316,6 +317,15 @@
         SKSpriteNode *nTemp = tempBlock.blockSprite;
         [self blowUp:nTemp];
     }
+    int highScoreTemp = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"HighScore"];
+    if(highScoreTemp<1){
+        highScoreTemp = 0;
+    }
+    _highScore = highScoreTemp;
+    if(_score>highScoreTemp){
+        [[NSUserDefaults standardUserDefaults] setInteger:_score forKey:@"HighScore"];
+        _highScore = _score;
+    }
     [self reset];
 }
 
@@ -329,11 +339,13 @@
  */
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+    NSLog(@"HIGH SCORE: %i",_highScore);
     if(_playing){
         _powerUpTimer--;
         _time++;
         if(_time%10==0){
-            _score = _time+_coinCount*_coinprice;
+            //_score = _time+_coinCount*_coinprice;
+            _score+=10;
             _countLabel.text = [NSString stringWithFormat:@"Coins:%i", (int)_coinCount];
             _scoreLabel.text = [NSString stringWithFormat:@"%i",(int)_score];
         }
@@ -393,6 +405,7 @@
         if(_coinInUse == true && _coin.coinSprite.position.y<self.size.height/3){
             if([_player intersectsNode:_coin.coinSprite]){
                 _coinCount++;
+                _score+=(int)_coinprice;
                 _coinInUse = false;
                 [self blowUp:_coin.coinSprite];
                 //[_coin.coinSprite removeFromParent];

@@ -8,6 +8,7 @@
 
 #import "SKPViewController.h"
 #import "SKPMyScene.h"
+#import "MenuScene.h"
 
 @implementation SKPViewController
 
@@ -17,13 +18,15 @@
 
     // Configure the view.
     SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
+    //skView.showsFPS = YES;
+    //skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [SKPMyScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+    //SKScene * scene = [SKPMyScene sceneWithSize:skView.bounds.size];
+    //scene.scaleMode = SKSceneScaleModeAspectFill;
     
+    MenuScene * scene = [MenuScene sceneWithSize:skView.bounds.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
     // Present the scene.
     [skView presentScene:scene];
 }
