@@ -5,6 +5,36 @@
 //  Copyright (c) 2014 Joshua Howland. All rights reserved.
 //
 
+/*
+ TODO
+ (1) Get button textures
+ (2) Finish menu
+ (3) Add global tree counter thats saved like high score
+ (4) Add tree counter display
+ (5) Add secondary powerup activated by swiping down
+ (6) Make settings on the menu that allows you to select it
+     (by default no powerup)
+ (7) Add slow time powerup
+ (8) Make it so that if you get 10,000 trees you can pick this
+     as your secondary powerup
+ (9) Add shooting powerup
+ (10) If you have 30,000+ trees you can pick this
+ (11) Come up with another
+ (12) Implement adds
+ (13) Make ads a global variable that can be turned off
+ (14) That way app can be repackaged as a lite version
+ (15) Or ads can be a 99 cent in app purchase
+    >>Do 15 instead of 14.  Global variable for ads = false
+      if payed
+ (16) Come up with good app icon
+ (17) Try to get gamecenter support for high score?
+ 
+ 
+ BUGS: 
+ 
+    -Menu score goes past button
+ */
+
 #import "SKPMyScene.h"
 #import "SpriteSuper.h"
 #import "Tree.h"
@@ -457,9 +487,13 @@
             x=10;
         }
         BOOL createone = false;
-        for(int i=0;i<x; i++){
-            if(arc4random()%20==0){
-                createone=true;
+        if(_time%2000 > 200){
+            if((_time%60>10)||(arc4random()%100<20)){
+                for(int i=0;i<x; i++){
+                    if(arc4random()%20==0){
+                        createone=true;
+                    }
+                }
             }
         }
         
