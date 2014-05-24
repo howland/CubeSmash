@@ -10,6 +10,7 @@
 #import "Tree.h"
 #import "Block.h"
 #import "Coin.h"
+#import "MenuScene.h"
 
 @interface SKPMyScene()
 
@@ -20,6 +21,7 @@
 @property BOOL pause;
 @property SKSpriteNode *pauseButton;
 @property SKSpriteNode *resumeButton;
+@property SKSpriteNode *menuButton;
 
 @property SKSpriteNode *background;
 @property SKSpriteNode *player;
@@ -141,10 +143,16 @@
         _pauseButton.name = @"Pause_Button";
         
         _resumeButton = [[SKSpriteNode alloc] initWithImageNamed:@"Play_Button"];
-        _resumeButton.position = _pauseButton.position;
-        _resumeButton.size = _pauseButton.size;
-        _resumeButton.zPosition = 100;
+        _resumeButton.position = CGPointMake(self.size.width/2, self.size.height*1/3);
+        _resumeButton.size = CGSizeMake(self.size.width*3/4, self.size.height/5);
+        _resumeButton.zPosition = 10000;
         _resumeButton.name = @"Resume_Button";
+        
+        _menuButton = [[SKSpriteNode alloc] initWithImageNamed:@"Menu_Button"];
+        _menuButton.position = CGPointMake(self.size.width/2, self.size.height*2/3);
+        _menuButton.size = _resumeButton.size;
+        _resumeButton.zPosition = 10000;
+        _resumeButton.name = @"Menu_Button";
         
         _background = [[SKSpriteNode alloc] initWithImageNamed:@"SplashScreen"];
         _background.position = CGPointMake(self.size.width/2,self.size.height/2);
@@ -167,15 +175,25 @@
         _playing = YES;
         [_tapToStart removeFromParent];
     }
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        _lastTouch = location;
-        SKNode *na1 = [self nodeAtPoint:location];
-        if([na1.name isEqualToString:_pauseButton.name]){
-            //do some pause stuff
-            [self pauseGame];
-        }else if([na1.name isEqualToString:_resumeButton.name]){
-            [self resumeGame];
+    if(!_pause){
+        for (UITouch *touch in touches) {
+            CGPoint location = [touch locationInNode:self];
+            _lastTouch = location;
+            SKNode *na1 = [self nodeAtPoint:location];
+            if([na1.name isEqualToString:_pauseButton.name]){
+                //do some pause stuff
+                [self pauseGame];
+            }
+        }
+    }else{
+        for (UITouch *touch in touches) {
+            CGPoint location = [touch locationInNode:self];
+            SKNode *na1 = [self nodeAtPoint:location];
+            if([na1.name isEqualToString:_resumeButton.name]){
+                [self resumeGame];
+            }else if([na1.name isEqualToString:@"Menu_Button"]){
+                [self returnToMenu];
+            }
         }
     }
 }
@@ -190,38 +208,41 @@
  @return: none
  */
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        //_player.position = CGPointMake(location.x, _player.position.y);
-        int dX = -4.6*(_lastTouch.x-location.x);
-        int newX = _player.position.x + dX;
-        int dY = abs(-_lastTouch.y + location.y);
-        if(dY>self.size.height/40){ //should try powerup..
-            if(_coinCount>0 && _powerUpTimer<0){
-                _coinCount--;
-                _powerUpTimer = 60;
-                [self blastPowerUp];
-            }
-        }else{
-            if(_player.position.x<self.size.width/10){
-                if(dX>0){
-                    _player.position = CGPointMake(newX, _player.position.y);
-                }
-            }else if(_player.position.x>self.size.width*.9){
-                if(dX<0){
-                    _player.position = CGPointMake(newX, _player.position.y);
+    if(!_pause){
+        for (UITouch *touch in touches) {
+            CGPoint location = [touch locationInNode:self];
+            //_player.position = CGPointMake(location.x, _player.position.y);
+            int dX = -4.6*(_lastTouch.x-location.x);
+            int newX = _player.position.x + dX;
+            int dY = abs(-_lastTouch.y + location.y);
+            if(dY>self.size.height/40){ //should try powerup..
+                if(_coinCount>0 && _powerUpTimer<0){
+                    _coinCount--;
+                    _powerUpTimer = 60;
+                    [self blastPowerUp];
                 }
             }else{
-                if(newX>self.size.width*.9){
-                    //do nothing
-                }else if(newX<self.size.width*.1){
-                    //do nothing
+                if(_player.position.x<self.size.width/10){
+                    if(dX>0){
+                        _player.position = CGPointMake(newX, _player.position.y);
+                    }
+                }else if(_player.position.x>self.size.width*.9){
+                    if(dX<0){
+                        _player.position = CGPointMake(newX, _player.position.y);
+                    }
                 }else{
-                    _player.position = CGPointMake(newX, _player.position.y);
+                    if(newX>self.size.width*.9){
+                        //do nothing
+                    }else if(newX<self.size.width*.1){
+                        //do nothing
+                    }else{
+                        _player.position = CGPointMake(newX, _player.position.y);
+                    }
                 }
             }
+            _lastTouch = location;
+            
         }
-        _lastTouch = location;
 
     }
 }
@@ -235,6 +256,14 @@
  */
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     //reset last touch?
+}
+
+/*
+ Method that transitions current scene to menu scene.  Dealocates everything in GameController.
+ */
+-(void)returnToMenu{
+    MenuScene *menuScene = [[MenuScene alloc] initWithSize:self.size];
+    [self.view presentScene:menuScene transition:[SKTransition fadeWithColor:[UIColor clearColor] duration:1.0f]];
 }
 
 /*
@@ -265,10 +294,9 @@
  */
 -(void)pauseGame{
     [self fadeOut:_pauseButton];
-    // [self addChild:_resumeButton];
     [self fadeIn:_resumeButton];
-    //[self addChild:_background];
     [self fadeIn:_background];
+    [self fadeIn:_menuButton];
     _pause = true;
 }
 
@@ -281,6 +309,7 @@
     [self fadeOut:_resumeButton];
     [self fadeIn:_pauseButton];
     [self fadeOut:_background];
+    [self fadeOut:_menuButton];
     _pause = false;
 }
 
