@@ -151,8 +151,8 @@
         _menuButton = [[SKSpriteNode alloc] initWithImageNamed:@"Menu_Button"];
         _menuButton.position = CGPointMake(self.size.width/2, self.size.height*2/3);
         _menuButton.size = _resumeButton.size;
-        _resumeButton.zPosition = 10000;
-        _resumeButton.name = @"Menu_Button";
+        _menuButton.zPosition = 10000;
+        _menuButton.name = @"Menu_Button";
         
         _background = [[SKSpriteNode alloc] initWithImageNamed:@"SplashScreen"];
         _background.position = CGPointMake(self.size.width/2,self.size.height/2);
