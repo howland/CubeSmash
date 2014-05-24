@@ -171,10 +171,6 @@
  */
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    if(!_playing){
-        _playing = YES;
-        [_tapToStart removeFromParent];
-    }
     if(!_pause){
         for (UITouch *touch in touches) {
             CGPoint location = [touch locationInNode:self];
@@ -183,6 +179,11 @@
             if([na1.name isEqualToString:_pauseButton.name]){
                 //do some pause stuff
                 [self pauseGame];
+            }else{
+                if(!_playing){
+                    _playing = YES;
+                    [_tapToStart removeFromParent];
+                }
             }
         }
     }else{
@@ -451,7 +452,7 @@
             }
         }
         
-        int x = _time/1000+1;
+        int x = _time/1400+1;
         if(x>10){
             x=10;
         }
@@ -481,8 +482,7 @@
                 
             }
         }
-        if(_coinInUse == false && _time%(20-(_time/5000))==0 && (arc4random()%18==0)){
-            //Block *blockTemp = [[Block alloc] initWithPosition:_treeSpawn andScreenSize:self.size];
+        if(_coinInUse == false && _time%(20-(_time/5000))==0 && (arc4random()%14==0)){
             _coin = [[Coin alloc] initWithPosition:_treeSpawn andScreenSize:self.size];
             [self addChild:_coin.coinSprite];
             _coinInUse=true;
