@@ -11,7 +11,6 @@
 
 @interface MenuScene()
 
-@property SKSpriteNode *backGround;
 @property SKEmitterNode *snow;
 @property SKSpriteNode *playButton;
 @property SKSpriteNode *scoresButton;
@@ -31,21 +30,11 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        self.backgroundColor = [SKColor colorWithRed:0 green:0 blue:0 alpha:1.0];
         
-        _backGround = [[SKSpriteNode alloc] initWithImageNamed:@"Background"];
-        _backGround.size = CGSizeMake(self.size.width*4,self.size.height);
-        _backGround.position = CGPointMake(-1*self.size.width + (int)(   arc4random()%(int)self.size.width*3     ), self.size.height/2);
-        [self addChild:_backGround];
+
         
-        //NSString *snowPath = [[NSBundle mainBundle] pathForResource:@"Snow" ofType:@"sks"];
-        //_snow = [NSKeyedUnarchiver unarchiveObjectWithFile:snowPath];
-        //_snow.particleSize = CGSizeMake(self.frame.size.width/20, self.frame.size.width/20);
-        //_snow.alpha = 1.0f;
-        //_snow.position = CGPointMake(self.size.width/2, self.size.height*1.1);
-        //_snow.particleSize = CGSizeMake(self.size.width/30,self.size.width/3);
-        
-        //[self addChild:_snow];
+
         
         
         _playButton = [[SKSpriteNode alloc] initWithImageNamed:@"play"];
@@ -60,7 +49,7 @@
         _scoresButton.name = @"scoresButton";
         
         
-        _settingsButton = [[SKSpriteNode alloc] initWithImageNamed:@"settings"];
+        _settingsButton = [[SKSpriteNode alloc] initWithImageNamed:@"powerup"];
         _settingsButton.size = _playButton.size;
         _settingsButton.position = CGPointMake(_playButton.position.x, _playButton.position.y - 1.2*2*_playButton.size.height);
         _settingsButton.name = @"settingsButton";
