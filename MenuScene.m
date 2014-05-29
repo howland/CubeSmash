@@ -21,6 +21,7 @@
 @property SKSpriteNode *highScoreLabel;
 @property SKSpriteNode *menuButton;
 @property SKLabelNode *highScoreText;
+@property int treeSum;
 
 @end
 
@@ -32,10 +33,11 @@
         
         self.backgroundColor = [SKColor colorWithRed:0 green:0 blue:0 alpha:1.0];
         
-
-        
-
-        
+        if([[NSUserDefaults standardUserDefaults] integerForKey:@"treeSum"]){
+            _treeSum = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"TreeSum"];
+        }else{
+            _treeSum = 0;
+        }
         
         _playButton = [[SKSpriteNode alloc] initWithImageNamed:@"play"];
         _playButton.size = CGSizeMake(self.size.width*2/3, self.size.height*1/7);

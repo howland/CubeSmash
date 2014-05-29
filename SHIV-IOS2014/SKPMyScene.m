@@ -63,7 +63,7 @@
 @property int coinCount;
 @property int powerUpTimer;
 
-
+@property int treeSum;
 @property float coinprice;
 
 @property CGPoint lastTouch;
@@ -120,7 +120,8 @@
         _powerUpTimer = 0;
         _pause = false;
         
-        
+        _treeSum = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"treeSum"];
+
         _trees = [[NSMutableArray alloc] init];
         
         [self reset];
@@ -433,6 +434,9 @@
         SKSpriteNode *nTemp = tempBlock.blockSprite;
         [self blowUp:nTemp];
     }
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:_score forKey:@"treeSum"];
+    
     int highScoreTemp = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"HighScore"];
     if(highScoreTemp<1){
         highScoreTemp = 0;
@@ -479,6 +483,7 @@
             if((tempTree.treeSprite.position.y<-100) || (tempTree.treeSprite.position.x<-100) || (tempTree.treeSprite.position.x>self.size.width*1.1)){
                 [tempTree.treeSprite removeFromParent];
                 [_trees removeObject:tempTree];
+                _treeSum++;
             }
         }
         
