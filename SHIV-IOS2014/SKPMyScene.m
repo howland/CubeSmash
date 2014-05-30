@@ -6,6 +6,12 @@
 //
 
 /*
+ Swipe up:  coin blast powerup
+ Swipe down: other powerup
+ 
+ */
+
+/*
  TODO
  (1) Get button textures
  (2) Finish menu
@@ -52,6 +58,11 @@
 @property SKSpriteNode *pauseButton;
 @property SKSpriteNode *resumeButton;
 @property SKSpriteNode *menuButton;
+@property int secondaryPowerup;
+@property SKSpriteNode *sheildPowerup;
+@property bool using2ndPowerup;
+@property int eligiblefor2ndPowerup;
+@property int powerup2Timer;
 
 @property SKSpriteNode *background;
 @property SKSpriteNode *player;
@@ -119,6 +130,7 @@
         
         _powerUpTimer = 0;
         _pause = false;
+        _secondaryPowerup = 0;
         
         _treeSum = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"treeSum"];
 
@@ -189,6 +201,10 @@
         _background.position = CGPointMake(self.size.width/2,self.size.height/2);
         _background.size = self.size;
         
+        _sheildPowerup = [[SKSpriteNode alloc] initWithImageNamed:@"sheild"];
+        _sheildPowerup.size = CGSizeMake(_player.size.width*1.2, _player.size.height*1.2);
+        _eligiblefor2ndPowerup = -2000;
+        
     }
     return self;
 }
@@ -246,12 +262,20 @@
             //_player.position = CGPointMake(location.x, _player.position.y);
             int dX = -4.6*(_lastTouch.x-location.x);
             int newX = _player.position.x + dX;
-            int dY = abs(-_lastTouch.y + location.y);
-            if(dY>self.size.height/40){ //should try powerup..
+            int dY = -_lastTouch.y + location.y;
+            int minfac = self.size.height/40;
+            if(dY>minfac){ //should try powerup..
                 if(_coinCount>0 && _powerUpTimer<0){
                     _coinCount--;
                     _powerUpTimer = 60;
                     [self blastPowerUp];
+                }
+            }else if(dY<-minfac){
+                if(!_using2ndPowerup && _eligiblefor2ndPowerup>0){
+                    _using2ndPowerup = true;
+                    _eligiblefor2ndPowerup = -2000;
+                    _powerup2Timer = 500;
+                    [self addChild:_sheildPowerup];
                 }
             }else{
                 if(_player.position.x<self.size.width/10){
@@ -449,6 +473,18 @@
     [self reset];
 }
 
+
+/*
+ Utility method that deals with removing the second powerup.
+ @param: none
+ @return: none
+ */
+-(void)removeSecondPowerup{
+    [_sheildPowerup removeFromParent];
+    _using2ndPowerup = false;
+    _powerup2Timer = -2000;
+}
+
 /*
  Method that sprite kit calls to update game 60 times a second.
  Contains all update procedures nessesary, as well as collision 
@@ -463,6 +499,18 @@
     if(_playing && !_pause){
         _powerUpTimer--;
         _time++;
+        if(!_using2ndPowerup){
+            _eligiblefor2ndPowerup++;
+            NSLog(@"Not using 2nd powerup");
+        }else{
+            _powerup2Timer--;
+            NSLog(@"using 2nd powerup");
+            _sheildPowerup.position = _player.position;
+            _sheildPowerup.zPosition = _player.zPosition+1;
+            if(_powerup2Timer<0){
+                [self removeSecondPowerup];
+            }
+        }
         if(_time%10==0){
             //_score = _time+_coinCount*_coinprice;
             _score+=10;
@@ -512,7 +560,12 @@
             Block *tempBlock = _blocks[i];
             if(tempBlock.blockSprite.position.y<self.size.height/3)
                 if([_player intersectsNode:tempBlock.blockSprite]){
-                    [self gameOver];
+                    if(_using2ndPowerup){
+                        [self removeSecondPowerup];
+                        [self blastPowerUp];
+                    }else{
+                        [self gameOver];
+                    }
                 }
             [tempBlock update];
             if(tempBlock.blockSprite.position.y<-100){
