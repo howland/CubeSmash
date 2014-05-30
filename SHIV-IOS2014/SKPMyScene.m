@@ -271,7 +271,7 @@
                     [self blastPowerUp];
                 }
             }else if(dY<-minfac){
-                if(!_using2ndPowerup){
+                if(!_using2ndPowerup && _eligiblefor2ndPowerup>0){
                     _using2ndPowerup = true;
                     _eligiblefor2ndPowerup = -2000;
                     _powerup2Timer = 500;
@@ -474,6 +474,11 @@
 }
 
 
+/*
+ Utility method that deals with removing the second powerup.
+ @param: none
+ @return: none
+ */
 -(void)removeSecondPowerup{
     [_sheildPowerup removeFromParent];
     _using2ndPowerup = false;
@@ -557,6 +562,7 @@
                 if([_player intersectsNode:tempBlock.blockSprite]){
                     if(_using2ndPowerup){
                         [self removeSecondPowerup];
+                        [self blastPowerUp];
                     }else{
                         [self gameOver];
                     }
