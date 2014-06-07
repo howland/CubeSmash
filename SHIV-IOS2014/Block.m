@@ -10,6 +10,8 @@
 @implementation Block
 
 -(id)initWithPosition:(CGPoint)position andScreenSize:(CGSize)screenSize{
+    self = [super init];
+
     _dy = 1.2;
     _over = 0;
     _a =0;
@@ -21,10 +23,6 @@
 	_y = position.y;
     _spawn = position;
     
-    self = [super init];
-    
-    //_blockSprite = [[SKSpriteNode alloc] initWithImageNamed:@"Block"];
-   // _blockSprite.size = CGSizeMake(_a, _b);
     _blockSprite = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(_a, _b)];
     _blockSprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_blockSprite.size];
     

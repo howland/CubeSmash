@@ -17,7 +17,6 @@
 @property SKSpriteNode *settingsButton;
 @property SKSpriteNode *gameLabel;
 
-
 @property SKSpriteNode *highScoreLabel;
 @property SKSpriteNode *menuButton;
 @property SKLabelNode *highScoreText;
@@ -110,9 +109,6 @@
 
 
 -(void)displayScores{
-    // @property SKSpriteNode *highScoreLabel;
-    // @property SKSpriteNode *menuButton;
-    
     _highScoreLabel = [[SKSpriteNode alloc] initWithImageNamed:@"highScoreButton"];
     _highScoreLabel.size = _scoresButton.size;
     _highScoreLabel.position = _playButton.position;
@@ -122,16 +118,11 @@
     _menuButton.position = _scoresButton.position;
     _menuButton.name = @"menuButton";
     
-    
-    
-    
-    
     int highScoreTemp = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"HighScore"];
     
     _highScoreText = [[SKLabelNode alloc] initWithFontNamed:@"AvenirNext-Heavy"];
     _highScoreText.text = [NSString stringWithFormat:@"%i",(int)highScoreTemp];
     _highScoreText.fontSize = self.frame.size.width/8;
-    // _highScoreLabel.zPosition  = 100;
     _highScoreText.position = CGPointMake(_highScoreLabel.position.x*1.35,0.95*_highScoreLabel.position.y);
     _highScoreText.fontColor = [UIColor colorWithRed:58/255.f green:198/255.f blue:239/255.f alpha:1];
     
