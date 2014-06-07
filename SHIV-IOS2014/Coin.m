@@ -10,6 +10,8 @@
 @implementation Coin
 
 -(id)initWithPosition:(CGPoint)position andScreenSize:(CGSize)screenSize{
+    self = [super init];
+
     _dy = 1.2;
     _over = 0;
     _a =0;
@@ -21,11 +23,8 @@
 	_y = position.y;
     _spawn = position;
     
-    self = [super init];
-    
     _coinSprite = [[SKSpriteNode alloc] initWithImageNamed:@"btcpic"];
     _coinSprite.size = CGSizeMake(_a, _b);
-    //_coinSprite = [[SKSpriteNode alloc] initWithColor:[UIColor yellowColor] size:CGSizeMake(_a, _b)];
     _coinSprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_coinSprite.size];
     
     return self;
@@ -35,7 +34,7 @@
     _a = (int)( (_y-_spawn.y)/_rad/5.0	);
     _b = _a;
     _x = _screenSize.width/2 - (_y-_spawn.y)/_rad*_over;
-    //NSLog(@"x , %f",_y);
+    
     _coinSprite.position = CGPointMake(_x,2*_spawn.y - _y);
     _coinSprite.size = CGSizeMake(_a, _b);
     _dy = (_y-_spawn.y)/30.0;
