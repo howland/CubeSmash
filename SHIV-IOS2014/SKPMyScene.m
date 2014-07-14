@@ -61,8 +61,8 @@
 @property int secondaryPowerup;
 @property SKSpriteNode *sheildPowerup;
 @property bool using2ndPowerup;
-@property int eligiblefor2ndPowerup;
 @property int powerup2Timer;
+@property SKSpriteNode *powerup2StatusBar;
 
 @property SKSpriteNode *background;
 @property SKSpriteNode *player;
@@ -132,8 +132,11 @@
         _pause = false;
         _secondaryPowerup = 0;
         
+        _powerup2StatusBar = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(0, 0)];
+        _powerup2StatusBar.position = CGPointMake(0,0);
+        [self addChild:_powerup2StatusBar];
+        
         _treeSum = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"treeSum"];
-
         _trees = [[NSMutableArray alloc] init];
         
         [self reset];
@@ -203,7 +206,6 @@
         
         _sheildPowerup = [[SKSpriteNode alloc] initWithImageNamed:@"sheild"];
         _sheildPowerup.size = CGSizeMake(_player.size.width*1.2, _player.size.height*1.2);
-        _eligiblefor2ndPowerup = -2000;
         
     }
     return self;
@@ -271,10 +273,10 @@
                     [self blastPowerUp];
                 }
             }else if(dY<-minfac){
-                if(!_using2ndPowerup && _eligiblefor2ndPowerup>0){
+                if(!_using2ndPowerup /*&& (_coinCount>4)*/){
                     _using2ndPowerup = true;
-                    _eligiblefor2ndPowerup = -2000;
-                    _powerup2Timer = 500;
+                    //_coinCount-=5;
+                    _powerup2Timer = 5000;
                     [self addChild:_sheildPowerup];
                 }
             }else{
@@ -481,6 +483,7 @@
  */
 -(void)removeSecondPowerup{
     [_sheildPowerup removeFromParent];
+    _powerup2StatusBar.size = CGSizeMake(0, 0);
     _using2ndPowerup = false;
     _powerup2Timer = -2000;
 }
@@ -500,13 +503,14 @@
         _powerUpTimer--;
         _time++;
         if(!_using2ndPowerup){
-            _eligiblefor2ndPowerup++;
             NSLog(@"Not using 2nd powerup");
         }else{
             _powerup2Timer--;
             NSLog(@"using 2nd powerup");
             _sheildPowerup.position = _player.position;
             _sheildPowerup.zPosition = _player.zPosition+1;
+            _powerup2StatusBar.size = CGSizeMake(self.size.width*(_powerup2Timer/5000.0), self.size.height/20);
+            _powerup2StatusBar.position = CGPointMake(self.size.width*((double)_powerup2Timer/5000.0)-self.size.width/2, self.size.height/9);
             if(_powerup2Timer<0){
                 [self removeSecondPowerup];
             }
